@@ -1,6 +1,7 @@
 package com.nguetcheu.spring.data.jpa.tutorial.repository;
 
 import com.nguetcheu.spring.data.jpa.tutorial.entity.Course;
+import com.nguetcheu.spring.data.jpa.tutorial.entity.Teacher;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -23,4 +24,20 @@ class CourseRepositoryTest {
         System.out.println("courses = " + courses);
     }
 
+    @Test
+    public void saveCourseWithTeacher() {
+        Teacher teacher = Teacher.builder()
+                .firstName("Priyanka")
+                .lastName("Singh")
+                .build();
+
+        Course course = Course
+                .builder()
+                .title("Python")
+                .credit(6)
+                .teacher(teacher)
+                .build();
+
+        courseRepository.save(course);
+    }
 }
